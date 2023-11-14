@@ -21,13 +21,19 @@ public class Game {
 
     @Column(name ="game_year")
     private Integer year;
-    
+
     private String genre;
-    private String Platforms;
+    @Column(name = "platforms", insertable = false, updatable = false)
+    private String platforms;
     private Double score;
     private String imgUrl;
+    
+    @Column(columnDefinition = "TEXT")
     private String shortDescription;
+
+    @Column(columnDefinition = "TEXT")
     private String longDescription;
+    private String Platforms;
 
     @Override
     public boolean equals(Object o) {
@@ -37,12 +43,12 @@ public class Game {
             return false;
         }
         Game game = (Game) o;
-        return Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(year, game.year) && Objects.equals(genre, game.genre) && Objects.equals(Platforms, game.Platforms) && Objects.equals(score, game.score) && Objects.equals(imgUrl, game.imgUrl) && Objects.equals(shortDescription, game.shortDescription) && Objects.equals(longDescription, game.longDescription);
+        return Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(year, game.year) && Objects.equals(genre, game.genre) && Objects.equals(Platforms, game.platforms) && Objects.equals(score, game.score) && Objects.equals(imgUrl, game.imgUrl) && Objects.equals(shortDescription, game.shortDescription) && Objects.equals(longDescription, game.longDescription);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, year, genre, Platforms, score, imgUrl, shortDescription, longDescription);
+        return Objects.hash(id, title, year, genre, platforms, score, imgUrl, shortDescription, longDescription);
     }
     
     
@@ -86,11 +92,13 @@ public class Game {
     public void setGenre(String genre) {
         this.genre = genre;
     }
-    public String getPlatforms() {
-        return Platforms;
+    public String getplatforms() {
+        return platforms;
     }
-    public void setPlatforms(String platforms) {
+    public void setplatforms(String platforms) {
         Platforms = platforms;
+        
+
     }
     public Double getScore() {
         return score;
